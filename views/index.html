@@ -4,11 +4,257 @@
   <title>ENGL 202C : Project 3</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/css/output.css" />
-  <div>
-    <h4>This is a starter Go web-app</h4>
-  </div>
+  <link rel="stylesheet" href="/output.css" />
 </header>
-<body></body>
+<body class="min-w-full overflow-x-hidden bg-slate-800 text-slate-200">
+  <div class="h-screen w-screen">
+    <div class="w-full h-full flex flex-col items-center justify-center">
+      <div class="mb-8 mt-48">
+        <h1 class="md:text-6xl">MAKING A WEB APP WITH GO</h1>
+      </div>
+      <div class="my-2">
+        <h1 class="md:text-3xl">FOR FUN AND PROFIT</h1>
+      </div>
+      <div class="mt-144">
+        <h1 class="md:text-xl">By - Wolfley Jr, James</h1>
+      </div>
+      <div class="mt-2">
+        <h1 class="md:text-xl">Published - OCTOBER 7, 2024</h1>
+      </div>
+      <div class="mt-2">
+        <h1 class="md:text-xl">Edited - OCTOBER 8, 2024</h1>
+      </div>
+    </div>
+  </div>
+  <div class="md:max-w-5xl w-full flex flex-col mx-auto">
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Outline</h1>
+      <p class="my-6">
+        Ready to get started making web applications? The goal of these instructions is to give you all the tools and processes needed to start with nothing and end up with a functioning web
+        application base. The chosen technologies for this project are Go for the backend language using the Echo library. The front end will be powered by Html and Tailwind for the CSS.
+      </p>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">The Why</h1>
+      <p class="my-6">
+        Some may ask why to choose Go as a web application backend? The reason which will exhibited by these instructions are the ease of use of which it can be done and the speed of Go. Go is a
+        garbage collected language but still maintains a level of speed similar to that of managed memory languages. Its syntax is also very easy to read making it easy for near anyone with any coding
+        experience the ability to learn it rather easily. These two things are not by mistake. Go was designed this way by engineers at Google while they were frustrated with C/C++ and its long
+        compile times, poor error messages, and difficult concurrency implementations. With these as the focuses it means that this language makes a good choice for a great deal of projects including
+        web applications.
+      </p>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Requirments</h1>
+      <div class="my-6">
+        <ul class="list-disc list-inside">
+          <li>Go installed on your machine. Available <a href="https://go.dev/doc/install">here</a></li>
+          <li>An editor of your choice. The examples will use VS Code</li>
+          <li>Being somewhat comfortable with the command line</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Getting Started</h1>
+      <p class="my-6">
+        The first step to any new project is getting your environment setup. Go doesn't require any special IDE to work with, 
+        but it is beneficial to use the extension for your editor to help with highlighting syntax. For VS Code it is simply 
+        called Go from the “Go Team at Google”. The next step is to initialize Go project with “Go mod init <name>” from the command line. 
+        Create a new directory and navigate to it then run “Go mod init GoWebApp”. 
+        This creates the go.mod file which tracks the version of Go used and the dependencies.
+      </p>
+      <img src="images/GettingStarted1.png" class="mx-6"/>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Installing Dependencies</h1>
+      <p class="my-6">
+        Next we will acquire all our dependencies of which there will only be two. The first and easiest is the Echo web server library. 
+        This is a simple and performant web server that is easy to use and fast. Simply run “go get github.com/labstack/echo/v4”. 
+        This will use the Go package manager to install Echo v4 
+      </p>
+      <img src="images/InstallingDependencies1.png" class="mx-6" />
+      <p class="my-6">
+        You'll notice all of these things were also added to your go.mod file and a new file named go.sum was created to track these dependencies.
+        The next and more difficult dependency is tailwindcss. This isn't strictly necessary, 
+        but it makes it significantly easier to style the web application in comparison to handwriting all of your CSS. 
+        You can find the instructions for your respective platform at tailwindcss.com/blog/standalone-cli. Since this project does not use npm we will be using the standalone CLI. 
+        Save the correct version to your projects folder. For Linux make sure to give the file the permission to be executed. 
+      </p>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Creating The File Structure</h1>
+      <p class="my-6">
+        There will be a couple files interacted with in this project. The first will be our main Go file. Create a file named “main.go” 
+        and at the top of the file simple put the line “package main”. We will come back to this file later. The next two files should be a pair of 
+        files named “input.css” and “output.css”. These files will be the basis of our styling generated by tailwindcss. Inside the input.css type the following code.
+      </p>
+      <div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        This tells tailwindcss what parts we want to import and use. Following this run this command in your terminal “./tailwindcss init”. 
+        This creates the configuration file we need for tailwindcss, “tailwind.config.js” which will look something like this.
+      </p>
+      <div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    /** @type {import('tailwindcss').Config} */
+    module.exports = {
+      content: [],
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    }</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        We need to modify this a bit and add/change these 3 lines
+      </p>
+<div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    /** @type {import('tailwindcss').Config} */
+    const colors = require("tailwindcss/colors"); //1st
+    const defaultTheme = require("tailwindcss/defaultTheme"); // 2nd
+    module.exports = {
+      content: ["./views/*.html"], //3rd
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    }</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        This tells tailwindcss where our source files for our html are when it's building the output.css file.
+        Next create a new directory named “views” and inside make a file called “index.html”. This file will be responsible for creating our 
+        templates that Go uses to render the webpage before it is served out to the requestor. 
+      </p>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Web Server</h1>
+      <p class="my-6">
+        Creating a web server is easy but there is a bit of boilerplate we need to write first. We need a type to represent the template.Template 
+        from Go standard library and a Render helper function to implement the echo.Render interface. They look like this.
+      </p>
+<div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    package main
+
+    import (
+	    "html/template"
+	    "io"
+	    "net/http"
+
+	    "github.com/labstack/echo/v4"
+    )
+
+    type Template struct {
+        templates *template.Template
+    }
+
+    func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+	    return t.templates.ExecuteTemplate(w, name, data)
+    }</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        Take special care when it automatically adds the imports it adds echo/v4 and not just echo. 
+        This render function is what essentially produces our html to be served to the client. Next, we will register our templates, create the echo server, pass in the templates, register routes, and start the echo server.
+      </p>
+      <div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    func main() {
+	    //Pre render the templates
+	    t := &Template{
+        templates: template.Must(template.ParseGlob("./views/*.html")),
+	    }
+	    //Create the echo server, assign  the template reference, and register the index route
+	    e := echo.New()
+	    e.File("/output.css", "output.css")
+	    e.Static("/images", "images")
+	    e.Renderer = t
+	    e.GET("/", Index)
+	    //Start the echo server with a logger
+	    e.Logger.Fatal(e.Start(":8080"))
+    }</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        Along with this you need the Index helper function which handles passing the context to the renderer.
+      </p>
+      <div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    func Index(c echo.Context) error {
+	    return c.Render(http.StatusOK, "index", nil)
+    }</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        Finally, the only thing left to do is fill out our “index.html” file in the views folder.
+      </p>
+      <div class="mx-6">
+        <pre class="bg-slate-900 w-full rounded-sm outline outline-slate-950 m-0">
+<code class="p-0">
+    {{"{{"}}define "index"{{"}}"}}
+    {{"<!DOCTYPE html>"}}
+    {{"<header>"}}
+      {{"<title>ENGL 202C : Project 3</title>"}}
+      {{"<meta charset=\"UTF-8\" />"}}
+      {{"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"}}
+      {{"<link rel=\"stylesheet\" href=\"/css/output.css\" />"}}
+      {{"<div>"}}
+        {{"<h4>This is a starter Go web-app</h4>"}}
+      {{"</div>"}}
+    {{"</header>"}}
+    {{"<body></body>"}}
+    {{"<footer></footer>"}}
+    {{"{{"}}end{{"}}"}}</code>
+  </pre>
+      </div>
+      <p class="my-6">
+        The important bit about this document is on lines 1,2,7, and 14. The first and fourteenth line tell Go's 
+        templating engine where “index” starts and stops. The rest are important for html to be correctly rendered in the browser with our styling.
+      </p>
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Running the Application</h1>
+      <p class="my-6">
+        Now that we have written the most basic form of an application lets run it and view it in our browser. The first step is to have tailwindcss generate our CSS files. This isn't as important at the moment as we haven't 
+        styled anything but it's a good habit to get into before running the site so that any changes applied will propagate. To do this run “./tailwindcss -i input.css -o output.css” 
+      </p>
+      <img src="images/RunningTheApplication1.png" class="mx-6" />
+      <p class="my-6">
+        This error is fine for now, this is only because we have not used any of the styles yet. After that we can have go run our application with “go run .” 
+        This command compiles and runs the web application. When it's running you should see this in your terminal. 
+      </p>
+      <img src="images/RunningTheApplication2.png" class="mx-6" />
+      <p class="my-6">
+        This means Echo is running and will display any requests made to the server in the log. To navigate to your freshly made web app open a browser and go to http://localhost:8080 You should see this in your browser. 
+      </p>
+      <img src="images/RunningTheApplication3.png" class="mx-6" />
+    </div>
+    <div>
+      <h1 class="md:text-3xl my-4 decoration-double underline-offset-8 underline">Conclusion</h1>
+      <p class="my-6">
+        In the end this is the most basic of web applications you could possibly make. The lessons learned here are still invaluable. 
+        You have now know how to run the web server, register new routes, create templates, and integrate tailwindcss for easy styling. 
+        With this as a starting point it is easy to expand and add more features from here. Often times the hardest part of learning how these technologies work is starting. 
+        From here feel free to play with the templates, try to get another page to load and link the two together. Treat this platform as a sandbox for learning. 
+        The full source code for this project as well as the completed version can be found on my github - <a href="https://www.github.com/James-Wolfley/assignment3">github.com/James-Wolfley/assignment3</a> 
+        A live version of this site which will be a web version of these instructions finished with this base is available here <a href="http://eng.wolfleymedia.com/ ">eng.wolfleymedia.com</a>
+      </p>
+    </div>
+  </div>
+</body>
 <footer></footer>
 {{end}}

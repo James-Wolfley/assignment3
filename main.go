@@ -27,6 +27,8 @@ func main() {
 	}
 	//Create the echo server, assign  the template reference, and register the index route
 	e := echo.New()
+	e.File("/output.css", "output.css")
+	e.Static("/images", "images")
 	e.Renderer = t
 	e.GET("/", Index)
 	//Start the echo server with a logger
